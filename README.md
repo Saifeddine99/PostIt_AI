@@ -5,6 +5,10 @@ media posts based on user-provided content. The system leverages Generative AI
 models (OpenAI, Groq, or DeepSeek) to produce tailored posts for platforms like
 LinkedIn, Facebook, and Twitter (X).
 
+## Youtube link:
+
+https://youtu.be/90T3fQ_VQII?si=HLIY1eHimbIlYl8m
+
 ## APIs Documentation:
 
 The backend API is built using Flask and provides the following endpoints:
