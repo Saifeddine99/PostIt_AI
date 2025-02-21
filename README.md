@@ -85,7 +85,3 @@ The backend API is built using Flask and provides the following endpoints:
 *   **Backend:** Flask (Python)
 *   **Frontend:** React, Vite
 *   **Database:** SQLite (database.db)
-
-## Contributing
-
-Contributions are welcome! Please open an issue or submit a pull request.
