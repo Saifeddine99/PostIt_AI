@@ -1,5 +1,17 @@
 #!/bin/bash
 
+# Function to check and kill process using a port
+kill_process_using_port() {
+  port="$1"
+  pid=$(lsof -i :"$port" -t) # -t for just the PID
+  if [[ -n "$pid" ]]; then
+    echo "Process using port $port found (PID: $pid). Killing..."
+    kill "$pid"
+    echo "Process killed."
+  fi
+}
+
+
 # Navigate to the backend directory
 cd backend
 
@@ -12,9 +24,14 @@ source venv/bin/activate
 # Install dependencies from requirements.txt
 pip install -r requirements.txt
 
+# Check and kill if port 5000 is in use
+kill_process_using_port 5000
+
 # Run the backend
+echo "Starting backend on port 5000..."
 python3 main.py &
 BACKEND_PID=$!
+echo "Backend started with PID: $BACKEND_PID"
 
 # Navigate back to the project root
 cd ..
@@ -22,15 +39,23 @@ cd ..
 # Navigate to the frontend directory
 cd frontend
 
-# Run the frontend development server
-npm run dev
+echo "Installing frontend dependencies..."
+npm install
+echo "Frontend dependencies installed."
 
-# Kill the backend process when the frontend terminates (or script finishes)
-if [[ -n "$BACKEND_PID" ]]; then
-  trap "kill $BACKEND_PID; echo 'Backend process killed.'" INT TERM EXIT
-fi
+echo "Building the frontend..."
+npm run build
+echo "Frontend built."
 
-# Optional: Keep the script running until the frontend terminates
+echo "Serving the frontend with preview..."
+npm run preview &
+FRONTEND_PID=$!
+echo "Frontend preview server started with PID: $FRONTEND_PID"
+
+# Kill processes on exit (important!)
+trap "kill $BACKEND_PID $FRONTEND_PID; echo 'Processes killed.'" INT TERM EXIT
+
+# Keep the script running (optional - comment out if not needed)
 # while true; do
 #   sleep 1
 # done

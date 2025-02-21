@@ -3,3 +3,4 @@ my_project/
 .env
 venv/
 instance/
+dist
