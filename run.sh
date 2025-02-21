@@ -51,13 +51,3 @@ echo "Serving the frontend with preview..."
 npm run preview &
 FRONTEND_PID=$!
 echo "Frontend preview server started with PID: $FRONTEND_PID"
-
-# Kill processes on exit (important!)
-trap "kill $BACKEND_PID $FRONTEND_PID; echo 'Processes killed.'" INT TERM EXIT
-
-# Keep the script running (optional - comment out if not needed)
-# while true; do
-#   sleep 1
-# done
-
-echo "Script finished."
