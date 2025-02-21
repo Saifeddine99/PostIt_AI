@@ -1,26 +1,11 @@
 # PostIt AI - Social Media Content Generation
 
-This project provides a backend API (Flask) and a frontend interface (React/Vite) for generating and managing social media content.  Users can generate posts based on provided criteria, save them, and view their history.
+PostIt is an AI-powered application designed to automate the generation of social
+media posts based on user-provided content. The system leverages Generative AI
+models (OpenAI, Groq, or DeepSeek) to produce tailored posts for platforms like
+LinkedIn, Facebook, and Twitter (X).
 
-## Project Structure
-.
-├── backend
-│   ├── instance
-│   │   └── database.db
-│   ├── main.py
-│   ├── requirements.txt
-│   └── website
-│      ├── auth.py
-│      ├── db_models.py
-│      ├── decorators.py
-│      ├── home_page.py
-│      ├── init.py
-│      └── post_generation.py
-├── frontend
-│   ├── ... (Frontend files)
-└── run.sh
-
-## Backend (Flask)
+## APIs Documentation:
 
 The backend API is built using Flask and provides the following endpoints:
 
@@ -81,21 +66,13 @@ The backend API is built using Flask and provides the following endpoints:
         *   `400`: `{"error": "Missing required parameters"}`
         *   `500`: `{"error": "Error message"}`
 
-### Home Page/Dashboard (`home_page.py`)
+### Home Page/ Dashboard (`home_page.py`)
 
 *   **GET /home/:** Retrieves a list of saved posts for the logged-in user.
     *   Headers: `Authorization: Bearer <token>`
     *   Responses:
         *   `200`: `{"result": [{"title": "title", "content": "content", "generated_post": "generated_post", "style": "style", "platform": "platform"}, ...]}` (A list of dictionaries)
         *   `500`: `{"error": "Error message"}`
-
-## Frontend (React/Vite)
-
-The frontend is built using React and Vite. It provides a user interface for interacting with the backend API. Key pages include:
-
-*   **Home/Dashboard:** Displays a list of previous saved posts (titles only). Clicking on a title displays the full post details.
-*   **Login:** Allows users to log in.
-*   **Register:** Allows users to create new accounts.
 
 ## Running the Project
 
